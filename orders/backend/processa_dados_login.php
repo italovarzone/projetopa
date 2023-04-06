@@ -1,0 +1,26 @@
+<?php
+
+include 'conexao.php';
+
+$email = $_POST['email'];
+$senha = $_POST['senha'];
+
+// Verifica se o usuário existe no banco de dados
+$sql = "SELECT * FROM usuarios WHERE email = sha1('$email') AND senha = sha1('$senha')";
+$resultado = $conn->query($sql);
+
+if ($resultado->num_rows == 1) {
+    // O usuário existe e a senha está correta, então inicie uma sessão para o usuário
+    session_start();
+    $usuario = $resultado->fetch_assoc();
+    $_SESSION['usuario_id'] = $usuario['id'];
+    $_SESSION['usuario_nome'] = $usuario['nome'];
+    header("Location: ../../index.php"); // Redireciona o usuário para a página "home.php"
+    exit;
+} else {
+    $mensagem = "E-mail ou senha inválidos.";
+    header("Location: login.php?mensagem=" . urlencode($mensagem)); // Redireciona o usuário de volta para a página de login com uma mensagem de erro
+    exit;
+}
+
+?>
