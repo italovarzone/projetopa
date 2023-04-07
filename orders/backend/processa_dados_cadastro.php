@@ -32,7 +32,7 @@ if ($senha !== $confirmaSenha) {
         $sql = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
 
         if (mysqli_query($conn, $sql)) {
-            header("Location: homepage.php");
+            header("Location: ../../game.php");
             exit;
         } else {
             $mensagem = "erro, usuário não cadastrado.";
