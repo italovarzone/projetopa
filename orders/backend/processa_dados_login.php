@@ -15,7 +15,7 @@ if ($resultado->num_rows == 1) {
     $usuario = $resultado->fetch_assoc();
     $_SESSION['usuario_id'] = $usuario['id'];
     $_SESSION['usuario_nome'] = $usuario['nome'];
-    header("Location: ../../index.php"); // Redireciona o usuário para a página "home.php"
+    header("Location: ../../game.php"); // Redireciona o usuário para a página "home.php"
     exit;
 } else {
     $mensagem = "E-mail ou senha inválidos.";

@@ -15,6 +15,10 @@ body {
   gap: 20px;
 }
 
+a {
+  text-decoration: none; /* remove sublinhado */
+  color: black; /* define a cor do texto como preto */
+}
 .card {
   width: 140px;
   height: 140px;

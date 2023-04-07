@@ -1,5 +1,6 @@
 <?php
-function homeGame($title) {
+
+function homeGame($title, $username) {
     echo "<!DOCTYPE html>
     <html lang=\"pt-br\">
       <head>
@@ -22,26 +23,11 @@ function homeGame($title) {
       <body>
         <div id=\"gameStart\">
           <div class=\"mensagem\">
-            <p>Jogo da Memória</p>
-
-            <input
-              type=\"text\"
-              id=\"name\"
-              placeholder=\"Nick\"
-              class=\"login__input\"
-              pattern=\"[a-zA-Z]+\"
-            />
-    
-            <input
-              type=\"number\"
-              id=\"tel\"
-              placeholder=\"(XX) XXXX-XXXX\"
-              class=\"tel__input\"
-            />
-    
+            <p>Seja bem-vindo, $username</p>
             <button class=\"start\" id=\"startjogo\" onclick=\"startGame()\">
               Jogar
             </button>
+            <a class=\"start\" href=\"orders/backend/processa_logout.php\">Logout</a>
           </div>
         </div>
     
@@ -106,6 +92,39 @@ function homeGame($title) {
     ";
 }
 
-
+function HomePage($title) {
+  echo "<!DOCTYPE html>
+  <html lang=\"pt-br\">
+  <head>
+      <meta charset=\"UTF-8\">
+      <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">
+      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+      <title>$title</title>
+      <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ\" crossorigin=\"anonymous\">
+      <link rel=\"stylesheet\" href=\"stylehomepage.css\">
+  </head>
+  <body>
+      <div class=\"container\">
+        <div class=\"card\">
+          <h2>Recycle Memory</h2>
+          <p>Aprenda a separar lixos se divertindo!</p>
+          <div class=\"btn-group\" role=\"group\" aria-label=\"Opções de login e cadastro\">
+              <button class=\"btn btn-primary\" onclick=\"location.href='orders/backend/login.php'\">Login</button>
+              <button class=\"btn btn-success\" onclick=\"location.href='orders/backend/cadastro.php'\">Cadastro</button>   
+          </div>
+      </div>
+  <!-- Bootstrap JS -->
+  <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\"
+      integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\"
+      crossorigin=\"anonymous\"></script>
+  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\"
+      integrity=\"sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1\"
+      crossorigin=\"anonymous\"></script>
+  <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\"
+      integrity=\"sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM\"
+      crossorigin=\"anonymous\"></script>
+  </body>
+  </html>";
+}
 
 ?>

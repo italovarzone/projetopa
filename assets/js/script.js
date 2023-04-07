@@ -11,26 +11,7 @@ const cardStart = document.querySelector("#card-start");
 const button = document.querySelector('.login__button');
 const form = document.querySelector('.login-form');
 
-
 function startGame() {
-
-    // Obter valores do nome e do telefone inseridos pelo usuário
-    const name = document.getElementById("name").value;
-    const tel = document.getElementById("tel").value;
-  
-    // Verificar se o nome tem pelo menos 3 letras e o telefone tem 11 números
-    if (name.length < 3) {
-      alert("O nome deve ter pelo menos 3 letras!");
-      return;
-    }
-    if (tel.length !== 11) {
-      alert("O telefone deve ter 11 números!");
-      return;
-    }
-  
-    // Se a validação foi bem sucedida, prosseguir com o jogo
-    // ...
-
   let gameStartLayer = document.getElementById("gameStart");
   gameStartLayer.style.display = "none";
   cardStart.play();
@@ -171,12 +152,6 @@ function calculateTime(time) {
   return `${displayMinutes}:${displaySeconds}`;
 }
 
-// ----------------------------------------------
-
-// localStorage.setItem("chave", "valor")
-// let chave = localStorage.getItem("chave")
-// localStorage.removeItem("chave")
-
 function verificarLocalStorage() {
   if (localStorage.length) {
     let timeStorage = localStorage.getItem("time");
@@ -211,79 +186,3 @@ function compararTime(time) {
   console.log(timeA);
   console.log(timeStorage);
 }
-
-
-// ----------------------------------------------
-
-// function shuffleCards(cards) {
-//   let currentIndex = cards.length; // inicializa com o total
-//   let randomIndex = 0;
-
-//   // Lógica
-//   // Seleciona o ultimo elemento do Array
-//   // Sorteia outro elemento do Array mult pelo index corrente
-//   // O passo acima descarta possibilidade de selecionar o mesmo índice
-//   // Decrementa para continuar o while
-//   // Inverte as posições
-
-//   // Não precisa retornar pois o array cards é global
-
-//   while (currentIndex !== 0) {
-//     randomIndex = Math.floor(Math.random() * currentIndex);
-//     currentIndex--;
-//     [cards[randomIndex], cards[currentIndex]] = [
-//       cards[currentIndex],
-//       cards[randomIndex],
-//     ];
-//   }
-// }
-
-// ----------------------------------------------
-
-// function createCardsFromTechs(techs) {
-//   let cards = [];
-
-//   // forEach ou for..of
-
-//   techs.forEach((tech) => {
-//     cards.push(createPairFromTech(tech));
-//   });
-
-//   // for (let tech of techs) {
-//   //   cards.push(createPairFromTech(tech));
-//   // }
-
-//   // 10 array com 2 objetos cada
-//   // console.log(cards);
-
-//   // 1 array com 10 objetos
-//   // console.log(cards.map((array) => array[0].icon));
-
-//   // 10 array com 2 objetos cada
-//   // console.log(cards.map((array) => array));
-
-//   // 20 objetos em um único array (separa)
-//   // console.log(cards.flatMap((array) => array));
-
-//   return cards.flatMap((pair) => pair);
-// }
-
-// // retorna 1 array com 2 objetos para outro array (cards)
-// function createPairFromTech(tech) {
-//   return [
-//     {
-//       id: createIdWithTech(tech),
-//       icon: tech,
-//       flipped: false,
-//     },
-//     {
-//       id: createIdWithTech(tech),
-//       icon: tech,
-//       flipped: false,
-//     },
-//   ];
-// }
-
-// function createIdWithTech(tech) {
-//   return tech + parseInt(Math.random() * 1000);
-// }
