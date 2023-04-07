@@ -11,6 +11,8 @@ const cardStart = document.querySelector("#card-start");
 const button = document.querySelector('.login__button');
 const form = document.querySelector('.login-form');
 
+let userScore = 0;
+
 function startGame() {
   let gameStartLayer = document.getElementById("gameStart");
   gameStartLayer.style.display = "none";
@@ -19,11 +21,54 @@ function startGame() {
   verificarLocalStorage();
   startTime();
   initializeCards(game.createCardsFromTechs());
-  localStorage.setItem('nome', name);
-  localStorage.setItem('telefone', tel);
-  let playerName = document.querySelector('#nomePlayer');
-  playerName.textContent = name;
+
+  if (game.checkMatch()) {
+    game.clearCards();
+    cardCheck.play();
+  
+    // Adiciona 10 pontos ao score do usuário
+    userScore += 10;
+    
+    if (game.checkGameOver()) {
+      let gameOverLayer = document.getElementById("gameOver");
+      gameOverLayer.style.display = "flex";
+  
+      cardWin.play();
+      pauseTime();
+  
+      let resultadoP = document.getElementById("resultado");
+      resultadoP.textContent = `Parabéns! Tempo de jogo: ${calculateTime(
+        time
+      )}`;
+      
+      // Atualize o score do usuário no banco de dados aqui
+      atualizarScore(userScore);
+    }
+  }
+  
 }
+
+function atualizarScore(score) {
+  fetch('http://localhost/projetopa/api/api.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      id: '1', // Substitua pelo ID do usuário atual
+      score: score
+    })
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Erro ao atualizar o score do usuário');
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
+
 
 function initializeCards(cards) {
   let gameBoard = document.getElementById("gameBoard");
