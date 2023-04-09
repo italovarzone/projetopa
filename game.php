@@ -7,13 +7,12 @@ session_start();
 $user = $_SESSION['usuario_id'];
 $username = $_SESSION['usuario_nome'];
 
-if (!isset($_SESSION['usuario_id'])) {
+if (!isset($user)) {
     $mensagem = "Você não está logado.";
-    header("Location: ../../orders/backend/login.php?mensagem=" . urlencode($mensagem));
+    header("Location: ../orders/backend/login.php?mensagem=" . urlencode($mensagem));
     exit;
 } else {
-    $nome;
-    homeGame('Recycle Memory', $username);
+    homeGame('Recycle Memory', $username, $user);
 }
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-function homeGame($title, $username) {
+function homeGame($title, $username, $user) {
     echo "<!DOCTYPE html>
     <html lang=\"pt-br\">
       <head>
@@ -24,7 +24,7 @@ function homeGame($title, $username) {
         <div id=\"gameStart\">
           <div class=\"mensagem\">
             <p>Seja bem-vindo, $username</p>
-            <button class=\"start\" id=\"startjogo\" onclick=\"startGame()\">
+            <button class=\"start\" id=\"startjogo\" onclick=\"startGame($user)\">
               Jogar
             </button>
             <a class=\"start\" href=\"orders/backend/processa_logout.php\">Logout</a>
@@ -32,7 +32,7 @@ function homeGame($title, $username) {
         </div>
     
         <div class=\"display2\">
-          <div id=\"nomePlayer\"></div>
+          <div>$username</div>
           <div class=\"tempo\">
             <div style=\"display: inline-block; margin-right: 4px\">Time:</div>
             <div id=\"time\" style=\"display: inline-block\">00:00</div>
@@ -58,7 +58,7 @@ function homeGame($title, $username) {
         <div id=\"gameOver\">
           <div class=\"mensagem\">
             <p id=\"resultado\"></p>
-            <button id=\"restart\" onclick=\"restart()\">Start Game</button>
+            <button id=\"restart\" onclick=\"location.href = 'api/alteratempouser.php'\">Start Game</button>
           </div>
         </div>
     

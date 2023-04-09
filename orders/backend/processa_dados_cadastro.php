@@ -29,10 +29,10 @@ if ($senha !== $confirmaSenha) {
         // o usuário não existe no banco de dados
         $senha = sha1($senha); 
         $email = sha1($email);
-        $sql = "INSERT INTO usuarios (nome, email, senha, score) VALUES ('$nome', '$email', '$senha', 0)";
+        $sql = "INSERT INTO usuarios (nome, email, senha, last_time, time_record) VALUES ('$nome', '$email', '$senha', '00:00', '00:00')";
 
         if (mysqli_query($conn, $sql)) {
-            header("Location: ../../game.php");
+            header("Location: login.php");
             exit;
         } else {
             $mensagem = "erro, usuário não cadastrado.";

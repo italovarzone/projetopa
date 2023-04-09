@@ -7,5 +7,6 @@ CREATE TABLE usuarios (
   nome VARCHAR(50) NOT NULL,
   email VARCHAR(50) NOT NULL,
   senha VARCHAR(50) NOT NULL,
-  score INT(40) NOT NULL
+  last_time VARCHAR(5) NOT NULL,
+  time_record VARCHAR(5) NOT NULL
 );

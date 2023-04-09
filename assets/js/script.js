@@ -12,8 +12,10 @@ const button = document.querySelector('.login__button');
 const form = document.querySelector('.login-form');
 
 let userScore = 0;
+var iduser;
 
-function startGame() {
+function startGame(userid) {
+  iduser = userid;
   let gameStartLayer = document.getElementById("gameStart");
   gameStartLayer.style.display = "none";
   cardStart.play();
@@ -25,9 +27,6 @@ function startGame() {
   if (game.checkMatch()) {
     game.clearCards();
     cardCheck.play();
-  
-    // Adiciona 10 pontos ao score do usuário
-    userScore += 10;
     
     if (game.checkGameOver()) {
       let gameOverLayer = document.getElementById("gameOver");
@@ -35,40 +34,15 @@ function startGame() {
   
       cardWin.play();
       pauseTime();
-  
       let resultadoP = document.getElementById("resultado");
+      let tempoJogo = calculateTime(time);
       resultadoP.textContent = `Parabéns! Tempo de jogo: ${calculateTime(
         time
       )}`;
-      
-      // Atualize o score do usuário no banco de dados aqui
-      atualizarScore(userScore);
     }
   }
   
 }
-
-function atualizarScore(score) {
-  fetch('http://localhost/projetopa/api/api.php', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      id: '1', // Substitua pelo ID do usuário atual
-      score: score
-    })
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Erro ao atualizar o score do usuário');
-    }
-  })
-  .catch(error => {
-    console.error(error);
-  });
-}
-
 
 function initializeCards(cards) {
   let gameBoard = document.getElementById("gameBoard");
@@ -131,13 +105,12 @@ function flipCard() {
 
           cardWin.play();
           pauseTime();
-
           let resultadoP = document.getElementById("resultado");
           resultadoP.textContent = `Parabéns! Tempo de jogo: ${calculateTime(
             time
           )}`;
-
-          compararTime(time);
+          
+          compararTime(iduser, time);
         }
       } else {
         setTimeout(() => {
@@ -210,7 +183,7 @@ function verificarLocalStorage() {
   }
 }
 
-function compararTime(time) {
+function compararTime(iduser, time) {
   let recorde = document.getElementById("recorde");
   let timeStorage = localStorage.getItem("time");
   let timeA = calculateTime(time);
@@ -224,10 +197,67 @@ function compararTime(time) {
   if (time1 < time2) {
     localStorage.setItem("time", timeStorage);
     recorde.textContent = timeStorage;
-  } else {
+  } else {-
     localStorage.setItem("time", timeA);
     recorde.textContent = timeA;
   }
   console.log(timeA);
   console.log(timeStorage);
+  console.log(iduser);
+
+  
+  // fetch('http://localhost/projetopa/api/alteratempouser.php', {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify(
+  //     {time_record: timeStorage, id_usuario: iduser})
+  // })
+  // .then(response => {
+  //   console.log(response);
+  //   if (!response.ok) {
+  //     throw new Error('Erro ao atualizar o score do usuário');
+  //   }
+  // })
+  // .catch(error => {
+  //   console.error(error);
+  // });
+
+  var url = 'http://localhost/projetopa/api/alteratempouser.php';
+  var formData = new FormData();
+  formData.append('id', iduser);
+  formData.append('time_record', timeStorage);
+
+
+  fetch(url, { method: 'POST', body: formData })
+  .then(function (response) {
+    return response.text();
+  })
+  .then(function (body) {
+    console.log(body);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+
+  // var dados = {
+  //   'id': iduser,
+  //   'time_record': timeStorage
+  // }
+  // dados = JSON.stringify(dados);
+  
+  // $.ajax({
+  //   url: 'http://localhost/projetopa/api/alteratempouser.php',
+  //   type: 'POST',
+  //   data: {data: dados},
+  //   success: function(result){
+  //     // Retorno se tudo ocorreu normalmente
+  //     console.log("Socesso");
+  //   },
+  //   error: function(jqXHR, textStatus, errorThrown) {
+  //     // Retorno caso algum erro ocorra
+  //     console.log("Ero");
+  //   }
+  // });
 }
