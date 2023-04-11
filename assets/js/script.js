@@ -11,7 +11,6 @@ const cardStart = document.querySelector("#card-start");
 const button = document.querySelector('.login__button');
 const form = document.querySelector('.login-form');
 
-let userScore = 0;
 var iduser;
 
 function startGame(userid) {
@@ -205,59 +204,23 @@ function compararTime(iduser, time) {
   console.log(timeStorage);
   console.log(iduser);
 
-  
-  // fetch('http://localhost/projetopa/api/alteratempouser.php', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify(
-  //     {time_record: timeStorage, id_usuario: iduser})
-  // })
-  // .then(response => {
-  //   console.log(response);
-  //   if (!response.ok) {
-  //     throw new Error('Erro ao atualizar o score do usuário');
-  //   }
-  // })
-  // .catch(error => {
-  //   console.error(error);
-  // });
-
   var url = 'http://localhost/projetopa/api/alteratempouser.php';
-  var formData = new FormData();
-  formData.append('id', iduser);
-  formData.append('time_record', timeStorage);
+  var dados = {
+    'id': iduser,
+    'time_record': timeStorage
+  }
+  
+  dados = JSON.stringify(dados);
+  console.log(dados);
 
-
-  fetch(url, { method: 'POST', body: formData })
+  fetch(url, { method: 'POST',  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: dados })
   .then(function (response) {
-    return response.text();
-  })
-  .then(function (body) {
-    console.log(body);
+    return response;
   })
   .catch(error => {
     console.error(error);
   });
-
-  // var dados = {
-  //   'id': iduser,
-  //   'time_record': timeStorage
-  // }
-  // dados = JSON.stringify(dados);
-  
-  // $.ajax({
-  //   url: 'http://localhost/projetopa/api/alteratempouser.php',
-  //   type: 'POST',
-  //   data: {data: dados},
-  //   success: function(result){
-  //     // Retorno se tudo ocorreu normalmente
-  //     console.log("Socesso");
-  //   },
-  //   error: function(jqXHR, textStatus, errorThrown) {
-  //     // Retorno caso algum erro ocorra
-  //     console.log("Ero");
-  //   }
-  // });
 }
