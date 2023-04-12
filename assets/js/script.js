@@ -15,11 +15,12 @@ var iduser;
 
 function startGame(userid) {
   iduser = userid;
+  recuperarTimeScoreUser();
+  // verificaIDUser(iduser);
   let gameStartLayer = document.getElementById("gameStart");
   gameStartLayer.style.display = "none";
   cardStart.play();
   stopTime();
-  verificarLocalStorage();
   startTime();
   initializeCards(game.createCardsFromTechs());
 
@@ -42,6 +43,7 @@ function startGame(userid) {
   }
   
 }
+
 
 function initializeCards(cards) {
   let gameBoard = document.getElementById("gameBoard");
@@ -169,22 +171,75 @@ function calculateTime(time) {
   return `${displayMinutes}:${displaySeconds}`;
 }
 
-function verificarLocalStorage() {
-  if (localStorage.length) {
-    let timeStorage = localStorage.getItem("time");
-    let recorde = document.getElementById("recorde");
-    recorde.textContent = timeStorage;
-  } else {
-    // let zeroTime = localStorage.setItem("time", "00:00");
-    let recorde = document.getElementById("recorde");
-    recorde.textContent = "00:00";
-    // console.log(zeroTime);
+// function verificarLocalStorage(iduser) {
+//   var url = 'http://localhost/projetopa/api/verificaiduser.php';
+//   var dados = {
+//     'id': iduser
+//   }
+  
+//   dados = JSON.stringify(dados);
+//   console.log(dados);
+
+//   fetch(url, { method: 'POST',  headers: {
+//     'Content-Type': 'application/json'
+//   },
+//   body: dados })
+//   .then(response => response.text())
+//   .then(resposta => {
+//     const valorBooleano = (resposta);
+//     console.log(valorBooleano);
+//     if (valorBooleano) {
+//       console.log('A resposta é verdadeira!');
+//     } else {
+//       console.log('A resposta é falsa!');
+//     }
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   });
+
+  // if (localStorage.length) {
+  //   let timeStorage = localStorage.getItem("time");
+  //   let recorde = document.getElementById("recorde");
+  //   recorde.textContent = timeStorage;
+  // } else {
+  //   // let zeroTime = localStorage.setItem("time", "00:00");
+  //   let recorde = document.getElementById("recorde");
+  //   recorde.textContent = "00:00";
+  //   // console.log(zeroTime);
+  // }
+// }
+
+function recuperarTimeScoreUser() {
+  var url = 'http://localhost/projetopa/api/recuperarecorduser.php';
+  var dados = {
+    'id': iduser
   }
+
+  dados = JSON.stringify(dados);
+  console.log(dados);
+
+  return fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: dados
+    })
+    .then(resposta => {
+      const valorTimeRecord = resposta.time_record;
+      console.log(valorTimeRecord);
+      return valorTimeRecord;
+    })
+    .catch(error => {
+      console.error(error);
+    });
 }
 
 function compararTime(iduser, time) {
-  let recorde = document.getElementById("recorde");
-  let timeStorage = localStorage.getItem("time");
+  // let recorde = document.getElementById("recorde");
+  // let timeStorage = localStorage.getItem("time");
+
   let timeA = calculateTime(time);
 
   let time1 = new Date("2022-01-01 " + timeStorage);
@@ -203,8 +258,10 @@ function compararTime(iduser, time) {
   console.log(timeA);
   console.log(timeStorage);
   console.log(iduser);
+}
 
-  var url = 'http://localhost/projetopa/api/alteratempouser.php';
+function recuperaRecordUser() {
+  var url = 'http://localhost/projetopa/api/recuperarecorduser.php';
   var dados = {
     'id': iduser,
     'time_record': timeStorage

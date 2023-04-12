@@ -11,26 +11,25 @@ if ($connect -> connect_errno) {
 
 session_start();
 
+$user = $_SESSION['usuario_id'];
+
 $body = file_get_contents('php://input');
 $json = json_decode($body, true);
 
 $id_usuario = $json['id'];
-$time_record = $json['time_record'];
 
-var_dump($_POST);
+$sql = "SELECT time_record FROM usuarios WHERE id = '$id_usuario'";
 
-// Executar a query SQL
-$sql = "UPDATE usuarios SET time_record = '$time_record' WHERE id = '$id_usuario'";
+$result = mysqli_query($connect, $sql);
 
-if (mysqli_query($connect, $sql)) {
-  if ($sql) {
-    echo "true";
-  } else {
-    echo "false";
-  }
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+    $response = array('time_record' => $row['time_record'] ?? null);
+    echo json_encode($response);
 } else {
-  echo "Erro ao consultar na base: " . mysqli_error($connect);
+    echo json_encode(array());
 }
 
 mysqli_close($connect);
+
 ?>
