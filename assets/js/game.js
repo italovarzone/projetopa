@@ -1,15 +1,15 @@
 let game = {
   techs: [
-    "bootstrap",
-    "css",
-    "electron",
-    "firebase",
-    "html",
-    "javascript",
-    "jquery",
-    "mongo",
-    "node",
-    "react",
+    ["lixeiraMarrom","ovoMarrom","marrom"],
+    ["lixeiraVerde", "garrafaVerde","verde"],
+    ["lixeiraAmarelo", "lataAmarelo","amarelo"],
+    ["lixeiraAzul", "jornalAzul", "azul"],
+    ["lixeiraBranco", "lixoBranco", "branco"],
+    ["lixeiraCinza", "lampadaCinza", "cinza"],
+    ["lixeiraLaranja", "pilhaLaranja", "laranja"],
+    ["lixeiraPreto", "palletPreto", "preto"],
+    ["lixeiraRoxo", "barrilRoxo", "roxo"],
+    ["lixeiraVermelho", "copoVermelho", "vermelho"],
   ],
   cards: null,
 
@@ -26,13 +26,15 @@ let game = {
   createPairFromTech: function (tech) {
     return [
       {
-        id: this.createIdWithTech(tech),
-        icon: tech,
+        id: this.createIdWithTech(tech[1]),
+        icon: tech[0],
+        value: tech[2],
         flipped: false,
       },
       {
-        id: this.createIdWithTech(tech),
-        icon: tech,
+        id: this.createIdWithTech(tech[1]),
+        icon: tech[1],
+        value: tech[2],
         flipped: false,
       },
     ];
@@ -83,7 +85,7 @@ let game = {
     if (!this.firstCard || !this.secondCard) {
       return false;
     }
-    return this.firstCard.icon === this.secondCard.icon;
+    return this.firstCard.value === this.secondCard.value;
   },
 
   clearCards: function () {
