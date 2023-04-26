@@ -168,45 +168,6 @@ function calculateTime(time) {
   return `${displayMinutes}:${displaySeconds}`;
 }
 
-// function verificarLocalStorage(iduser) {
-//   var url = 'http://localhost/projetopa/api/verificaiduser.php';
-//   var dados = {
-//     'id': iduser
-//   }
-  
-//   dados = JSON.stringify(dados);
-//   console.log(dados);
-
-//   fetch(url, { method: 'POST',  headers: {
-//     'Content-Type': 'application/json'
-//   },
-//   body: dados })
-//   .then(response => response.text())
-//   .then(resposta => {
-//     const valorBooleano = (resposta);
-//     console.log(valorBooleano);
-//     if (valorBooleano) {
-//       console.log('A resposta é verdadeira!');
-//     } else {
-//       console.log('A resposta é falsa!');
-//     }
-//   })
-//   .catch(error => {
-//     console.error(error);
-//   });
-
-  // if (localStorage.length) {
-  //   let timeStorage = localStorage.getItem("time");
-  //   let recorde = document.getElementById("recorde");
-  //   recorde.textContent = timeStorage;
-  // } else {
-  //   // let zeroTime = localStorage.setItem("time", "00:00");
-  //   let recorde = document.getElementById("recorde");
-  //   recorde.textContent = "00:00";
-  //   // console.log(zeroTime);
-  // }
-// }
-
 function recuperarTimeScoreUser() {
   let recorde = document.getElementById("recorde")
   // Faz uma requisição HTTP para o arquivo PHP que retorna o JSON
@@ -219,50 +180,50 @@ function recuperarTimeScoreUser() {
       // console.log(`O tempo de gravação do usuário é: ${data.time_record}`);
     })
     .catch(error => console.error(error)); // Lida com erros da requisição HTTP
+
+    return recorde.textContent;
 }
 
 function compararTime(time) {
-  // let recorde = document.getElementById("recorde");
-  // let timeStorage = localStorage.getItem("time");
+  let recorde = document.getElementById("recorde");
+  let timeNovo = calculateTime(time);
+  let timeRecordUser = recuperarTimeScoreUser();
 
-  let timeA = calculateTime(time);
+  console.log(timeNovo);
+  console.log(timeRecordUser);
 
-  // let time1 = new Date("2022-01-01 " + timeStorage);
-  let time2 = new Date("2022-01-01 " + timeA);
+  if (timeNovo < timeRecordUser) {
+    fetch('http://localhost/projetopa/api/alteratempouser.php', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        record: timeNovo
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      recorde.textContent = data.time_record;
+    })
+    .catch(error => console.error(error));
 
-  console.log(time1);
-  console.log(time2);
-
-  // if (time1 < time2) {
-  //   localStorage.setItem("time", timeStorage);
-  //   recorde.textContent = timeStorage;
-  // } else {-
-  //   localStorage.setItem("time", timeA);
-  //   recorde.textContent = timeA;
-  // }
-  // console.log(timeA);
-  // console.log(timeStorage);
-  // console.log(iduser);
+  } else if (timeRecordUser == '00:00') {
+    fetch('http://localhost/projetopa/api/alteratempouser.php', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        record: timeNovo
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      recorde.textContent = data.time_record;
+    })
+    .catch(error => console.error(error));
+  } else if (timeNovo > timeRecordUser) {
+    console.log("Você não bateu seu record!");
+  }
 }
-
-// function recuperaRecordUser() {
-//   var url = 'http://localhost/projetopa/api/recuperarecorduser.php';
-//   var dados = {
-//     'id': iduser,
-//     'time_record': timeStorage
-//   }
-  
-//   dados = JSON.stringify(dados);
-//   console.log(dados);
-
-//   fetch(url, { method: 'POST',  headers: {
-//     'Content-Type': 'application/json'
-//   },
-//   body: dados })
-//   .then(function (response) {
-//     return response;
-//   })
-//   .catch(error => {
-//     console.error(error);
-//   });
-// }

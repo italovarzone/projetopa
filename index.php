@@ -1,6 +1,6 @@
 <?php
 require 'function_game.php';
 
-HomePage('Bem-Vindo!');
+HomePage('Eco Puzzle');
 
 ?>

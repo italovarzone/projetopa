@@ -106,7 +106,7 @@ function HomePage($title) {
   <body>
       <div class=\"container\">
         <div class=\"card\">
-          <h2>Recycle Memory</h2>
+          <h2>$title</h2>
           <p>Aprenda a separar lixos se divertindo!</p>
           <div class=\"btn-group\" role=\"group\" aria-label=\"Opções de login e cadastro\">
               <button class=\"btn btn-primary\" onclick=\"location.href='orders/backend/login.php'\">Login</button>

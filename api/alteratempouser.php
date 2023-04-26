@@ -11,25 +11,19 @@ if ($connect -> connect_errno) {
 
 session_start();
 
-$body = file_get_contents('php://input');
-$json = json_decode($body, true);
+$user = $_SESSION['usuario_id'];
 
-$id_usuario = $json['id'];
-$time_record = $json['time_record'];
+// Recebe o novo recorde do usuário enviado pela requisição HTTP
+$data = json_decode(file_get_contents('php://input'), true);
+$time_record = $data['record'];
 
-var_dump($_POST);
-
-// Executar a query SQL
-$sql = "UPDATE usuarios SET time_record = '$time_record' WHERE id = '$id_usuario'";
+// Executar a query SQL para atualizar o recorde do usuário
+$sql = "UPDATE usuarios SET time_record = '$time_record' WHERE id = '$user'";
 
 if (mysqli_query($connect, $sql)) {
-  if ($sql) {
-    echo "true";
-  } else {
-    echo "false";
-  }
+    echo json_encode(array("time_record" => $time_record));
 } else {
-  echo "Erro ao consultar na base: " . mysqli_error($connect);
+    echo "Erro ao consultar na base: " . mysqli_error($connect);
 }
 
 mysqli_close($connect);

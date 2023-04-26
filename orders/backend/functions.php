@@ -20,6 +20,7 @@ function bodylogin($title) {
                 <input type=\"email\" name=\"email\" required><br><br>
                 <label for=\"senha\">Senha:</label>
                 <input type=\"password\" name=\"senha\" required><br><br>
+                <input type=\"button\" value=\"Voltar\" class=\"btn\">
                 <input type=\"submit\" value=\"Entrar\" class=\"btn\">
             </form>
         </div>
