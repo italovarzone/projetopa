@@ -58,7 +58,7 @@ function homeGame($title, $username, $user) {
         <div id=\"gameOver\">
           <div class=\"mensagem\">
             <p id=\"resultado\"></p>
-            <button id=\"restart\" onclick=\"location.href = 'api/alteratempouser.php'\">Start Game</button>
+            <button id=\"restart\" onclick=\"restart()\">Start Game</button>
           </div>
         </div>
     

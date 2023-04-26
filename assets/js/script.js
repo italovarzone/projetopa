@@ -16,7 +16,6 @@ var iduser;
 function startGame(userid) {
   iduser = userid;
   recuperarTimeScoreUser();
-  // verificaIDUser(iduser);
   let gameStartLayer = document.getElementById("gameStart");
   gameStartLayer.style.display = "none";
   cardStart.play();
@@ -36,9 +35,7 @@ function startGame(userid) {
       pauseTime();
       let resultadoP = document.getElementById("resultado");
       let tempoJogo = calculateTime(time);
-      resultadoP.textContent = `Parabéns! Tempo de jogo: ${calculateTime(
-        time
-      )}`;
+      resultadoP.textContent = `Parabéns! Tempo de jogo: ${tempoJogo}`;
     }
   }
   
@@ -111,7 +108,7 @@ function flipCard() {
             time
           )}`;
           
-          compararTime(iduser, time);
+          compararTime(time);
         }
       } else {
         setTimeout(() => {
@@ -211,73 +208,61 @@ function calculateTime(time) {
 // }
 
 function recuperarTimeScoreUser() {
-  var url = 'http://localhost/projetopa/api/recuperarecorduser.php';
-  var dados = {
-    'id': iduser
-  }
-
-  dados = JSON.stringify(dados);
-  console.log(dados);
-
-  return fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: dados
+  let recorde = document.getElementById("recorde")
+  // Faz uma requisição HTTP para o arquivo PHP que retorna o JSON
+  fetch('http://localhost/projetopa/api/recuperarecorduser.php')
+    .then(response => response.json()) // Analisa a resposta como um objeto JSON
+    .then(data => {
+      // Usa o objeto JSON retornado para exibir o tempo de gravação do usuário
+      // console.log(data.time_record);
+      recorde.textContent = data.time_record;
+      // console.log(`O tempo de gravação do usuário é: ${data.time_record}`);
     })
-    .then(resposta => {
-      const valorTimeRecord = resposta.time_record;
-      console.log(valorTimeRecord);
-      return valorTimeRecord;
-    })
-    .catch(error => {
-      console.error(error);
-    });
+    .catch(error => console.error(error)); // Lida com erros da requisição HTTP
 }
 
-function compararTime(iduser, time) {
+function compararTime(time) {
   // let recorde = document.getElementById("recorde");
   // let timeStorage = localStorage.getItem("time");
 
   let timeA = calculateTime(time);
 
-  let time1 = new Date("2022-01-01 " + timeStorage);
+  // let time1 = new Date("2022-01-01 " + timeStorage);
   let time2 = new Date("2022-01-01 " + timeA);
 
   console.log(time1);
   console.log(time2);
 
-  if (time1 < time2) {
-    localStorage.setItem("time", timeStorage);
-    recorde.textContent = timeStorage;
-  } else {-
-    localStorage.setItem("time", timeA);
-    recorde.textContent = timeA;
-  }
-  console.log(timeA);
-  console.log(timeStorage);
-  console.log(iduser);
+  // if (time1 < time2) {
+  //   localStorage.setItem("time", timeStorage);
+  //   recorde.textContent = timeStorage;
+  // } else {-
+  //   localStorage.setItem("time", timeA);
+  //   recorde.textContent = timeA;
+  // }
+  // console.log(timeA);
+  // console.log(timeStorage);
+  // console.log(iduser);
 }
 
-function recuperaRecordUser() {
-  var url = 'http://localhost/projetopa/api/recuperarecorduser.php';
-  var dados = {
-    'id': iduser,
-    'time_record': timeStorage
-  }
+// function recuperaRecordUser() {
+//   var url = 'http://localhost/projetopa/api/recuperarecorduser.php';
+//   var dados = {
+//     'id': iduser,
+//     'time_record': timeStorage
+//   }
   
-  dados = JSON.stringify(dados);
-  console.log(dados);
+//   dados = JSON.stringify(dados);
+//   console.log(dados);
 
-  fetch(url, { method: 'POST',  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: dados })
-  .then(function (response) {
-    return response;
-  })
-  .catch(error => {
-    console.error(error);
-  });
-}
+//   fetch(url, { method: 'POST',  headers: {
+//     'Content-Type': 'application/json'
+//   },
+//   body: dados })
+//   .then(function (response) {
+//     return response;
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   });
+// }

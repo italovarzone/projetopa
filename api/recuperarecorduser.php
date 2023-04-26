@@ -13,12 +13,7 @@ session_start();
 
 $user = $_SESSION['usuario_id'];
 
-$body = file_get_contents('php://input');
-$json = json_decode($body, true);
-
-$id_usuario = $json['id'];
-
-$sql = "SELECT time_record FROM usuarios WHERE id = '$id_usuario'";
+$sql = "SELECT time_record FROM usuarios WHERE id = '$user'";
 
 $result = mysqli_query($connect, $sql);
 
