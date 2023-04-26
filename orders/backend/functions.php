@@ -20,7 +20,7 @@ function bodylogin($title) {
                 <input type=\"email\" name=\"email\" required><br><br>
                 <label for=\"senha\">Senha:</label>
                 <input type=\"password\" name=\"senha\" required><br><br>
-                <input type=\"button\" value=\"Voltar\" class=\"btn\">
+                <input type=\"button\" value=\"Voltar\" class=\"btn\" onclick=\"location.href='../../index.php'\">
                 <input type=\"submit\" value=\"Entrar\" class=\"btn\">
             </form>
         </div>
@@ -51,7 +51,8 @@ function bodycad($title) {
                 <input type=\"password\" name=\"senha\" id=\"senha\" required><br><br>
                 <label for=\"confirma-senha\">Confirme a senha:</label>
                 <input type=\"password\" name=\"confirma-senha\" id=\"confirma-senha\" required><br><br>
-                <input type=\"submit\" value=\"Entrar\" class=\"btn\">
+                <input type=\"button\" value=\"Voltar\" class=\"btn\" onclick=\"location.href='../../index.php'\">
+                <input type=\"submit\" value=\"Cadastrar\" class=\"btn\">
             </form>
         </div>
     </body>
