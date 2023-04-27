@@ -14,8 +14,8 @@ function homeGame($title, $username, $user) {
           rel=\"stylesheet\"
         />
     
-        <link rel=\"stylesheet\" href=\"assets/css/login.css\"/>
-        <link rel=\"stylesheet\" href=\"assets/css/style.css\"/>
+        <link rel=\"stylesheet\" href=\"../css/login.css\"/>
+        <link rel=\"stylesheet\" href=\"../css/style.css\"/>
     
         <title>$title</title>
       </head>
@@ -27,7 +27,7 @@ function homeGame($title, $username, $user) {
             <button class=\"start\" id=\"startjogo\" onclick=\"startGame($user)\">
               Jogar
             </button>
-            <a class=\"start\" href=\"orders/backend/processa_logout.php\">Logout</a>
+            <a class=\"start\" href=\"../../orders/backend/processa_logout.php\">Logout</a>
           </div>
         </div>
     
@@ -40,14 +40,6 @@ function homeGame($title, $username, $user) {
         </div>
     
         <div id=\"gameBoard\">
-          <!-- <div id=\"0000\" class=\"card\" data-icon=\"bootstrap\">
-          <div class=\"card_front\">
-            <img src=\"./assets/img/bootstrap.png\" class=\"icon\">
-          </div>
-          <div class=\"card_back\">
-            <img src=\"./assets/img/card.png\">
-          </div>
-        </div> -->
         </div>
     
         <div class=\"display\">
@@ -64,29 +56,29 @@ function homeGame($title, $username, $user) {
     
         <!-- Sons do jogo !-->
         <audio
-          src=\"./assets/sound/card-start.mp3\"
+          src=\"../sound/card-start.mp3\"
           preload=\"auto\"
           id=\"card-start\"
         ></audio>
         <audio
-          src=\"./assets/sound/card-click.mp3\"
+          src=\"../sound/card-click.mp3\"
           preload=\"auto\"
           id=\"card-click\"
         ></audio>
         <audio
-          src=\"./assets/sound/card-check.mp3\"
+          src=\"../sound/card-check.mp3\"
           preload=\"auto\"
           id=\"card-check\"
         ></audio>
         <audio
-          src=\"./assets/sound/card-win.mp3\"
+          src=\"../sound/card-win.mp3\"
           preload=\"auto\"
           id=\"card-win\"
         ></audio>
     
         <!-- JavaScript !-->
-        <script src=\"./assets/js/game.js\"></script>
-        <script src=\"./assets/js/script.js\"></script>
+        <script src=\"../js/game.js\"></script>
+        <script src=\"../js/script.js\"></script>
       </body>
     </html>
     ";
@@ -101,7 +93,7 @@ function HomePage($title) {
       <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
       <title>$title</title>
       <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ\" crossorigin=\"anonymous\">
-      <link rel=\"stylesheet\" href=\"stylehomepage.css\">
+      <link rel=\"stylesheet\" href=\"../css/stylehomepage.css\">
   </head>
   <body>
       <div class=\"container\">
@@ -109,8 +101,9 @@ function HomePage($title) {
           <h2>$title</h2>
           <p>Aprenda a separar lixos se divertindo!</p>
           <div class=\"btn-group\" role=\"group\" aria-label=\"Opções de login e cadastro\">
-              <button class=\"btn btn-primary\" onclick=\"location.href='orders/backend/login.php'\">Login</button>
-              <button class=\"btn btn-success\" onclick=\"location.href='orders/backend/cadastro.php'\">Cadastro</button>   
+              <button class=\"btn btn-primary\" onclick=\"location.href='../projetopa/orders/backend/login.php'\">Login</button>
+              <button class=\"btn btn-primary\" onclick=\"location.href='../projetopa/orders/backend/cadastro.php'\">Cadastro</button>
+              <button class=\"btn btn-primary\" onclick=\"location.href='../projetopa/assets/php/score.php'\">Score</button>   
           </div>
       </div>
   <!-- Bootstrap JS -->

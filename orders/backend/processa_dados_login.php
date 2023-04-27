@@ -6,7 +6,7 @@ $email = $_POST['email'];
 $senha = $_POST['senha'];
 
 // Verifica se o usuário existe no banco de dados
-$sql = "SELECT * FROM usuarios WHERE email = sha1('$email') AND senha = sha1('$senha')";
+$sql = "SELECT * FROM usuarios WHERE email = '$email' AND senha = sha1('$senha')";
 $resultado = $conn->query($sql);
 
 if ($resultado->num_rows == 1) {
@@ -18,7 +18,7 @@ if ($resultado->num_rows == 1) {
 
 
 
-    header("Location: ../../game.php?ID=" . $usuario['id']); // Redireciona o usuário para a página "home.php"
+    header("Location: ../../assets/php/game.php?ID=" . $usuario['id']); // Redireciona o usuário para a página "home.php"
     exit;
 } else {
     $mensagem = "E-mail ou senha inválidos.";

@@ -106,6 +106,16 @@ input[type="button"]:active {
 	border-bottom: solid #743131 2px;
 }
 
+input[type="submit"]:hover {
+	color: #3E8E41;
+	transition: 0.1s;
+}
+
+input[type="button"]:hover {
+	color: #743131;
+	transition: 0.1s;
+}
+
 #mensagem {
 	display: block;
 	margin-top: 10px;

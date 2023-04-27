@@ -76,12 +76,12 @@ function createCardFace(face, card, element) {
   if (face === FRONT) {
     let iconElement = document.createElement("img");
     iconElement.classList.add(ICON);
-    iconElement.src = "./assets/img/" + card.icon + ".png";
+    iconElement.src = "../img/" + card.icon + ".png";
     cardElementFace.appendChild(iconElement);
   } else {
     let iconElement = document.createElement("img");
     iconElement.classList.add(ICON);
-    iconElement.src = "./assets/img/card.png";
+    iconElement.src = "../img/card.png";
     cardElementFace.appendChild(iconElement);
   }
   element.appendChild(cardElementFace);
