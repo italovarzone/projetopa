@@ -13,7 +13,7 @@ if (!$conn) {
 }
 
 // busca os dados do ranking no banco de dados
-$sql = "SELECT nome, email, time_record FROM usuarios ORDER BY time_record ASC LIMIT 10";
+$sql = "SELECT nome, email, time_record FROM usuarios WHERE time_record <> '00:00' ORDER BY time_record ASC LIMIT 10";
 $result = mysqli_query($conn, $sql);
 
 // exibe os dados na tabela
