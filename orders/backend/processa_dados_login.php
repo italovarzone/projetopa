@@ -21,8 +21,7 @@ if ($resultado->num_rows == 1) {
     header("Location: ../../assets/php/game.php?ID=" . $usuario['id']); // Redireciona o usuário para a página "home.php"
     exit;
 } else {
-    $mensagem = "E-mail ou senha inválidos.";
-    header("Location: login.php?mensagem=" . urlencode($mensagem)); // Redireciona o usuário de volta para a página de login com uma mensagem de erro
+    echo '<script>alert("E-mail ou senha inválidos."); window.location.href="login.php";</script>';
     exit;
 }
 

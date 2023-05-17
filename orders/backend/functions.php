@@ -1,8 +1,9 @@
 <?php
 
-function bodylogin($title) {
+function bodylogin($title)
+{
 
-    echo"<!DOCTYPE html>
+    echo "<!DOCTYPE html>
     <html lang=\"pt-br\">
     <head>
         <meta charset=\"UTF-8\">
@@ -28,7 +29,8 @@ function bodylogin($title) {
     </html>";
 }
 
-function bodycad($title) {
+function bodycad($title)
+{
     echo "<!DOCTYPE html>
     <html lang=\"pt-br\">
     <head>
@@ -59,7 +61,8 @@ function bodycad($title) {
     </html>";
 }
 
-function logout_page() {
+function logout_page()
+{
     echo "<form action=\"processa_logout.php\" method=\"post\">
     <input type=\"submit\" value=\"Logout\">
     </form>";

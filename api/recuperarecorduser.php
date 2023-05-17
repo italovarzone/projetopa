@@ -4,8 +4,8 @@ include '../orders/backend/conexao.php';
 
 $connect = new mysqli("localhost", "root", "", "bdmemoria");
 
-if ($connect -> connect_errno) {
-    echo "Failed to connect to MySQL: " . $connect -> connect_error;
+if ($connect->connect_errno) {
+    echo "Failed to connect to MySQL: " . $connect->connect_error;
     exit();
 }
 
