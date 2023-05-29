@@ -169,7 +169,11 @@ function calculateTime(time) {
 function recuperarTimeScoreUser() {
   let recorde = document.getElementById("recorde");
   // Faz uma requisição HTTP para o arquivo PHP que retorna o JSON
+<<<<<<< HEAD
   fetch("http://localhost/projetopa/controller/recuperarecorduser.php")
+=======
+  fetch("http://localhost/projetopa/orders/backend/recuperarecorduser.php")
+>>>>>>> 1f3835faa3ae65722e13a8f32558df046dd041d1
     .then((response) => response.json()) // Analisa a resposta como um objeto JSON
     .then((data) => {
       // Usa o objeto JSON retornado para exibir o tempo de gravação do usuário
@@ -191,7 +195,11 @@ function compararTime(time) {
   console.log(timeRecordUser);
 
   if (timeNovo < timeRecordUser) {
+<<<<<<< HEAD
     fetch("http://localhost/projetopa/controller/alteratempouser.php", {
+=======
+    fetch("http://localhost/projetopa/orders/backend/alteratempouser.php", {
+>>>>>>> 1f3835faa3ae65722e13a8f32558df046dd041d1
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -206,7 +214,11 @@ function compararTime(time) {
       })
       .catch((error) => console.error(error));
   } else if (timeRecordUser == "00:00") {
+<<<<<<< HEAD
     fetch("http://localhost/projetopa/controller/alteratempouser.php", {
+=======
+    fetch("http://localhost/projetopa/orders/backend/alteratempouser.php", {
+>>>>>>> 1f3835faa3ae65722e13a8f32558df046dd041d1
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
