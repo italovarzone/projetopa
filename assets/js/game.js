@@ -1,8 +1,8 @@
 let game = {
   techs: [
-    ["lixeiraMarrom","ovoMarrom","marrom"],
-    ["lixeiraVerde", "garrafaVerde","verde"],
-    ["lixeiraAmarelo", "lataAmarelo","amarelo"],
+    ["lixeiraVerde", "garrafaVerde", "verde"],
+    ["lixeiraAmarelo", "lataAmarelo", "amarelo"],
+    ["lixeiraMarrom", "ovoMarrom", "marrom"],
     ["lixeiraAzul", "jornalAzul", "azul"],
     ["lixeiraBranco", "lixoBranco", "branco"],
     ["lixeiraCinza", "lampadaCinza", "cinza"],

@@ -1,7 +1,8 @@
 <?php
 
-function homeGame($title, $username, $user) {
-    echo "<!DOCTYPE html>
+function homeGame($title, $username, $user)
+{
+  echo "<!DOCTYPE html>
     <html lang=\"pt-br\">
       <head>
         <meta charset=\"UTF-8\" />
@@ -27,7 +28,8 @@ function homeGame($title, $username, $user) {
             <button class=\"start\" id=\"startjogo\" onclick=\"startGame($user)\">
               Jogar
             </button>
-            <a class=\"start\" href=\"../../orders/backend/processa_logout.php\">Logout</a>
+            <button class=\"start\" onclick=\"location.href='../../assets/php/score.php'\">Score</button>
+            <button class=\"startSair\" onclick=\"location.href='../../orders/backend/processa_logout.php'\">Sair</button>
           </div>
         </div>
     
@@ -50,8 +52,8 @@ function homeGame($title, $username, $user) {
         <div id=\"gameOver\">
           <div class=\"mensagem\">
             <p id=\"resultado\"></p>
-            <button id=\"restart\" onclick=\"restart()\">Start Game</button>
-          </div>
+            <button class=\"btn btn-primary\" onclick=\"location.href='../php/game.php'\">Menu</button>
+          </div> 
         </div>
     
         <!-- Sons do jogo !-->
@@ -84,7 +86,8 @@ function homeGame($title, $username, $user) {
     ";
 }
 
-function HomePage($title) {
+function HomePage($title)
+{
   echo "<!DOCTYPE html>
   <html lang=\"pt-br\">
   <head>
@@ -92,14 +95,17 @@ function HomePage($title) {
       <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">
       <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
       <title>$title</title>
-      <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ\" crossorigin=\"anonymous\">
-      <link rel=\"stylesheet\" href=\"../css/stylehomepage.css\">
+      <link rel=\"stylesheet\" href=\"../projetopa/assets/css/stylehomepage.css\">
+
   </head>
   <body>
       <div class=\"container\">
         <div class=\"card\">
           <h2>$title</h2>
-          <p>Aprenda a separar lixos se divertindo!</p>
+          <p>Aprenda a coleta seletiva se divertindo!</p>
+          <div class=\"video-container\">
+            <video src=\"../projetopa/assets/gif/game.mp4\" autoplay loop muted style=\"width: 110%;\"></video>
+          </div>
           <div class=\"btn-group\" role=\"group\" aria-label=\"Opções de login e cadastro\">
               <button class=\"btn btn-primary\" onclick=\"location.href='../projetopa/orders/backend/login.php'\">Login</button>
               <button class=\"btn btn-primary\" onclick=\"location.href='../projetopa/orders/backend/cadastro.php'\">Cadastro</button>

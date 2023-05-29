@@ -20,7 +20,7 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     $posicao = 1;
     $tableRows = ""; // variável para armazenar as linhas da tabela
-    
+
     while ($row = mysqli_fetch_assoc($result)) {
         $tableRows .= "<tr><td>{$posicao}º</td><td>{$row['nome']}</td><td>{$row['time_record']}</td></tr>";
         $posicao++;
@@ -37,19 +37,27 @@ echo "<!DOCTYPE html>
     <title>Ranking</title>
 </head>
 <body>
-<h1>Ranking de Jogadores</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Posição</th>
-                <th>Nome do Jogador</th>
-                <th>Score</th>
+<div class=\"container\">
+  <div class=\"card\">
+    <h1>Ranking de Jogadores</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Posição</th>
+                    <th>Nome do Jogador</th>
+                    <th>Score</th>
             </tr>
         </thead>
     <tbody>
         $tableRows
     </tbody>
     </table>
+        <div class=\"btn-group\" role=\"group\" aria-label=\"Opções de voltar ao Index\">
+            <button class=\"startSair\" onclick=\"location.href='../../orders/backend/processa_logout.php'\">Sair</button>
+            <button class=\"btn btn-primary\" onclick=\"location.href='../../assets/php/game.php'\">Menu</button>
+        </div>
+ </div>
+</div>
 </body>
 </html>";
 

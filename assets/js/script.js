@@ -8,8 +8,8 @@ const cardCheck = document.querySelector("#card-check");
 const cardWin = document.querySelector("#card-win");
 const cardStart = document.querySelector("#card-start");
 
-const button = document.querySelector('.login__button');
-const form = document.querySelector('.login-form');
+const button = document.querySelector(".login__button");
+const form = document.querySelector(".login-form");
 
 var iduser;
 
@@ -26,11 +26,11 @@ function startGame(userid) {
   if (game.checkMatch()) {
     game.clearCards();
     cardCheck.play();
-    
+
     if (game.checkGameOver()) {
       let gameOverLayer = document.getElementById("gameOver");
       gameOverLayer.style.display = "flex";
-  
+
       cardWin.play();
       pauseTime();
       let resultadoP = document.getElementById("resultado");
@@ -38,9 +38,7 @@ function startGame(userid) {
       resultadoP.textContent = `Parabéns! Tempo de jogo: ${tempoJogo}`;
     }
   }
-  
 }
-
 
 function initializeCards(cards) {
   let gameBoard = document.getElementById("gameBoard");
@@ -107,7 +105,7 @@ function flipCard() {
           resultadoP.textContent = `Parabéns! Tempo de jogo: ${calculateTime(
             time
           )}`;
-          
+
           compararTime(time);
         }
       } else {
@@ -169,19 +167,19 @@ function calculateTime(time) {
 }
 
 function recuperarTimeScoreUser() {
-  let recorde = document.getElementById("recorde")
+  let recorde = document.getElementById("recorde");
   // Faz uma requisição HTTP para o arquivo PHP que retorna o JSON
-  fetch('http://localhost/projetopa/api/recuperarecorduser.php')
-    .then(response => response.json()) // Analisa a resposta como um objeto JSON
-    .then(data => {
+  fetch("http://localhost/projetopa/controller/recuperarecorduser.php")
+    .then((response) => response.json()) // Analisa a resposta como um objeto JSON
+    .then((data) => {
       // Usa o objeto JSON retornado para exibir o tempo de gravação do usuário
       // console.log(data.time_record);
       recorde.textContent = data.time_record;
       // console.log(`O tempo de gravação do usuário é: ${data.time_record}`);
     })
-    .catch(error => console.error(error)); // Lida com erros da requisição HTTP
+    .catch((error) => console.error(error)); // Lida com erros da requisição HTTP
 
-    return recorde.textContent;
+  return recorde.textContent;
 }
 
 function compararTime(time) {
@@ -193,36 +191,35 @@ function compararTime(time) {
   console.log(timeRecordUser);
 
   if (timeNovo < timeRecordUser) {
-    fetch('http://localhost/projetopa/api/alteratempouser.php', {
-      method: 'PUT',
+    fetch("http://localhost/projetopa/controller/alteratempouser.php", {
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        record: timeNovo
+        record: timeNovo,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        recorde.textContent = data.time_record;
       })
-    })
-    .then(response => response.json())
-    .then(data => {
-      recorde.textContent = data.time_record;
-    })
-    .catch(error => console.error(error));
-
-  } else if (timeRecordUser == '00:00') {
-    fetch('http://localhost/projetopa/api/alteratempouser.php', {
-      method: 'PUT',
+      .catch((error) => console.error(error));
+  } else if (timeRecordUser == "00:00") {
+    fetch("http://localhost/projetopa/controller/alteratempouser.php", {
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        record: timeNovo
+        record: timeNovo,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        recorde.textContent = data.time_record;
       })
-    })
-    .then(response => response.json())
-    .then(data => {
-      recorde.textContent = data.time_record;
-    })
-    .catch(error => console.error(error));
+      .catch((error) => console.error(error));
   } else if (timeNovo > timeRecordUser) {
     console.log("Você não bateu seu record!");
   }
